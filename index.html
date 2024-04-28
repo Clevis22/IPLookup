@@ -69,17 +69,15 @@
             color: #e67e22; /* Orange strong text */
         }
 
-      #ipAddress {
-          font-size: 24px; /* Increased font size */
-          color: #e67e22; /* Orange IP address text */
-          text-align: center;
-          margin-bottom: 20px; /* Added margin to separate from other elements */
-          max-width: 100%; /* Ensure it doesn't exceed the width of the parent container */
-          overflow: hidden; /* Hide any overflow if it does exceed */
-          white-space: nowrap; /* Prevent the IP address from wrapping to the next line */
-          text-overflow: ellipsis; /* Show ellipsis (...) if the text overflows */
-      }
-
+        #ipAddress {
+            color: #e67e22; /* Orange IP address text */
+            text-align: center;
+            margin-bottom: 20px; /* Added margin to separate from other elements */
+            max-width: 100%; /* Ensure it doesn't exceed the width of the parent container */
+            overflow: hidden; /* Hide any overflow if it does exceed */
+            white-space: nowrap; /* Prevent the IP address from wrapping to the next line */
+            font-size: 3em; /* Initial font size */
+        }
 
         footer {
             background-color: #2c3e50; /* Dark blue-gray footer */
@@ -141,7 +139,7 @@
 <body>
   
 <div class="topnav" id="myTopnav">
-    <a href="/" class="active">Ip Lookup</a>
+    <a href="https://github.com/Clevis22/IPLookup" class="active">GitHub</a>
     <a href="#about">About</a>
     <a href="https://www.cloudflare.com/learning/network-layer/internet-protocol/">Learn More</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -277,6 +275,26 @@
                 document.getElementById('ednsInfo').innerHTML = "Error occurred while fetching EDNS data.";
             });
     });
+
+    // Function to dynamically adjust font size of IP Address to fit the container
+    window.addEventListener('resize', resizeIpAddress);
+
+    function resizeIpAddress() {
+        var containerWidth = document.getElementById('result').offsetWidth;
+        var ipAddress = document.getElementById('ipAddress');
+        var fontSize = 3; // Initial font size in em
+        var minFontSize = 1.5; // Minimum font size in em
+        var step = 0.1; // Font size reduction step
+
+        // Keep reducing font size until it fits or reaches the minimum font size
+        while (ipAddress.scrollWidth > containerWidth && fontSize > minFontSize) {
+            fontSize -= step;
+            ipAddress.style.fontSize = fontSize + 'em';
+        }
+    }
+
+    // Call resizeIpAddress on page load
+    window.onload = resizeIpAddress;
 </script>
 </body>
 </html>
