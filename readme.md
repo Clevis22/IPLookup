@@ -9,7 +9,7 @@ Interactive Map: Displays a map with a marker indicating the user's IP location.
 Responsive Design: The website is optimized for various screen sizes and devices.
 Suspicious IP Check: Checks if the user's IP address is included in a list of known suspicious IP addresses, potentially indicating malicious activity.
 
-# Technologies Used
+## Technologies Used
 
 * HTML
 * CSS
