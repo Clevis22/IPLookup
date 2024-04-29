@@ -185,6 +185,8 @@
             <!-- EDNS Information (conditional based on availability) -->
             <li id="ednsInfo" style="display: none;"><strong>EDNS IP:</strong> <span id="ednsIp"></span></li>
             <li id="ednsInfo" style="display: none;"><strong>EDNS Geo:</strong> <span id="ednsGeo"></span></li>
+
+          <li><strong>IP Reputation:</strong> <span id="sus"></span></li>
         </ul>
     </div>
 </div>
@@ -205,86 +207,113 @@
 
 <!-- Include Bootstrap JavaScript (optional) -->
 <script>
-    // JavaScript code to fetch and display geolocation information
-    document.addEventListener('DOMContentLoaded', function () {
-        // Make a GET request to the IPAPI endpoint to fetch data
-        fetch('https://ipapi.co/json/')
-            .then(response => response.json())
-            .then(data => {
-                // Update the HTML elements with the data received from the API
-                document.getElementById('ipAddress').textContent = data.ip;
-                document.getElementById('country').textContent = data.country_name;
-                document.getElementById('countryCode').textContent = data.country;
-                document.getElementById('currency').textContent = data.currency;
-                document.getElementById('city').textContent = data.city;
-                document.getElementById('region').textContent = data.region;
-                document.getElementById('regionName').textContent = data.region_code;
-                document.getElementById('latitude').textContent = data.latitude;
-                document.getElementById('longitude').textContent = data.longitude;
-                document.getElementById('timezone').textContent = data.timezone;
-                document.getElementById('zip').textContent = data.postal;
-                document.getElementById('isp').textContent = data.org;
-                document.getElementById('org').textContent = data.org;
-                document.getElementById('asNumber').textContent = data.asn;
-                document.getElementById('asName').textContent = data.org;
+  // JavaScript code to fetch and display geolocation information
+  document.addEventListener('DOMContentLoaded', function () {
+      // Make a GET request to the IPAPI endpoint to fetch data
+      fetch('https://ipapi.co/json/')
+          .then(response => response.json())
+          .then(data => {
+              // Update the HTML elements with the data received from the API
+              document.getElementById('ipAddress').textContent = data.ip;
+              document.getElementById('country').textContent = data.country_name;
+              document.getElementById('countryCode').textContent = data.country;
+              document.getElementById('currency').textContent = data.currency;
+              document.getElementById('city').textContent = data.city;
+              document.getElementById('region').textContent = data.region;
+              document.getElementById('regionName').textContent = data.region_code;
+              document.getElementById('latitude').textContent = data.latitude;
+              document.getElementById('longitude').textContent = data.longitude;
+              document.getElementById('timezone').textContent = data.timezone;
+              document.getElementById('zip').textContent = data.postal;
+              document.getElementById('isp').textContent = data.org;
+              document.getElementById('org').textContent = data.org;
+              document.getElementById('asNumber').textContent = data.asn;
+              document.getElementById('asName').textContent = data.org;
 
-                // Initialize the map
-                var map = L.map('map').setView([data.latitude, data.longitude], 13);
+              // Initialize the map
+              var map = L.map('map').setView([data.latitude, data.longitude], 13);
 
-                // Add the base map layer
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                }).addTo(map);
+              // Add the base map layer
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  maxZoom: 19,
+              }).addTo(map);
 
-                // Add a marker to the map
-                L.marker([data.latitude, data.longitude]).addTo(map)
-                    .bindPopup('Your IP Location').openPopup();
-            })
-            .catch(error => {
-                console.error(error);
-                document.getElementById('result').innerHTML = "Error occurred while fetching data.";
-            });
-    });
+              // Add a marker to the map
+              L.marker([data.latitude, data.longitude]).addTo(map)
+                  .bindPopup('Your IP Location').openPopup();
 
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
+              // Check if the user's IP address is in the list
+              checkUserIPInList(data.ip);
+          })
+          .catch(error => {
+              console.error(error);
+              document.getElementById('result').innerHTML = "Error occurred while fetching data.";
+          });
+  });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Make a GET request to the EDNS API
-        fetch('https://edns.ip-api.com/json')
-            .then(response => response.json())
-            .then(data => {
-                // Check if both "dns" and "edns" objects exist in the response
-                if (data.hasOwnProperty('dns')) {
-                    // Display the DNS information
-                    document.getElementById('dnsIp').textContent = data.dns.ip;
-                    document.getElementById('dnsGeo').textContent = data.dns.geo;
-                } else {
-                    // Handle the case where "dns" is missing in the response
-                    document.getElementById('dnsIp').textContent = "N/A";
-                    document.getElementById('dnsGeo').textContent = "N/A";
-                }
+  function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+          x.className += " responsive";
+      } else {
+          x.className = "topnav";
+      }
+  }
 
-                // Check if "edns" object exists in the response
-                if (data.hasOwnProperty('edns')) {
-                    // Display the EDNS information and show the EDNS section
-                    document.getElementById('ednsIp').textContent = data.edns.ip;
-                    document.getElementById('ednsGeo').textContent = data.edns.geo;
-                    document.getElementById('ednsInfo').style.display = 'block';
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                // Handle errors while fetching data
-                document.getElementById('ednsInfo').innerHTML = "Error occurred while fetching EDNS data.";
-            });
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+      // Make a GET request to the EDNS API
+      fetch('https://edns.ip-api.com/json')
+          .then(response => response.json())
+          .then(data => {
+              // Check if both "dns" and "edns" objects exist in the response
+              if (data.hasOwnProperty('dns')) {
+                  // Display the DNS information
+                  document.getElementById('dnsIp').textContent = data.dns.ip;
+                  document.getElementById('dnsGeo').textContent = data.dns.geo;
+              } else {
+                  // Handle the case where "dns" is missing in the response
+                  document.getElementById('dnsIp').textContent = "N/A";
+                  document.getElementById('dnsGeo').textContent = "N/A";
+              }
+
+              // Check if "edns" object exists in the response
+              if (data.hasOwnProperty('edns')) {
+                  // Display the EDNS information and show the EDNS section
+                  document.getElementById('ednsIp').textContent = data.edns.ip;
+                  document.getElementById('ednsGeo').textContent = data.edns.geo;
+                  document.getElementById('ednsInfo').style.display = 'block';
+              }
+          })
+          .catch(error => {
+              console.error(error);
+              // Handle errors while fetching data
+              document.getElementById('ednsInfo').innerHTML = "Error occurred while fetching EDNS data.";
+          });
+  });
+
+  // Function to fetch the IP address list from the remote source
+  async function fetchIPList() {
+      try {
+          const response = await fetch('https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt');
+          const text = await response.text();
+          const ipList = text.split(/\s+/).filter(str => /^\d+\.\d+\.\d+\.\d+$/.test(str));
+          return ipList;
+      } catch (error) {
+          console.error('Error fetching IP list:', error);
+          return [];
+      }
+  }
+
+  // Function to check if the user's IP address is in the list
+  async function checkUserIPInList(userIP) {
+      const ipList = await fetchIPList();
+
+      if (ipList.includes(userIP)) {
+          document.getElementById("sus").textContent = "Suspicious";
+      } else {
+        document.getElementById("sus").textContent = "Safe";
+      }
+  }
 </script>
 </body>
 </html>
