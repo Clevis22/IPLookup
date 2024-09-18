@@ -19,37 +19,45 @@
 
     <!-- Custom CSS -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
         body {
-            background-color: #2c3e50; /* Dark blue-gray background */
-            color: #ecf0f1; /* Light gray text */
-            font-family: 'Ubuntu Mono', monospace;
-            padding: 20px;
-        }
+        background-color: #3c3836; /* Gruvbox dark background */
+        color: #ebdbb2; /* Gruvbox light text */
+        font-family: "Source Code Pro", monospace; /* Monospace font */
+        padding: 20px;
+    }
 
-        header {
-            background-color: #34495e; /* Dark blue-gray header */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-        }
+    header {
+        background-color: #282828; /* Gruvbox dark background */
+        color: #ebdbb2; /* Gruvbox light text */
+        padding: 10px 0;
+    }
 
-        .container {
-            background-color: #34495e; /* Dark blue-gray container */
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
+    .container {
+        background-color: #3c3836; /* Gruvbox dark gray container */
+        padding: 20px;
+        border-radius: 12px;
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+        margin-top: 20px;
+    }
 
-        h1 {
-            color: white; /* Orange heading text */
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+    h1 {
+        color: #458588; /* Gruvbox red heading text */
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 36px;
+    }
 
         h2 {
             font-size: 24px;
+            color: #458588;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #458588;
         }
 
         ul {
@@ -66,12 +74,12 @@
             display: inline-block;
             width: 120px;
             font-weight: bold;
-            color: #e67e22; /* Orange strong text */
+            color: #458588; /* Orange strong text */
         }
 
       #ipAddress {
           font-size: 3em; /* Increased font size */
-          color: #e67e22; /* Orange IP address text */
+          color: #8ec07c; /* Orange IP address text */
           overflow-wrap: anywhere;
       }
 
@@ -88,23 +96,29 @@
           }
       }
 
+      @media (max-width: 576px) {
+    li strong {
+        margin-right: 25px; /* Adjust the value as needed */
+    }
+}
+
 
         footer {
-            background-color: #2c3e50; /* Dark blue-gray footer */
-            color: #ecf0f1; /* Light gray text */
+            background-color: #3c3836; /* Dark blue-gray footer */
+            color: #d79921; /* Light gray text */
             text-align: center;
             padding: 10px 0;
         }
         
         .topnav {
             overflow: hidden;
-            background-color: #2c3e50;
+            background-color: #3c3836;
         }
 
         .topnav a {
             float: left;
             display: block;
-            color: #f2f2f2;
+            color: #d79921;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -197,9 +211,17 @@
     <div id="map" style="height: 400px;"></div>
 </div>
 
+
 <div id="about" class="container mt-5">
     <h2 class="mb-4">About</h2>
     <p>This service provides insights into the geographic and network details of your current IP address. The site uses IP-API.com and ipapi.co for IP lookup services. IP reputation is provided by <a href="https://github.com/stamparm/ipsum">https://github.com/stamparm/ipsum</a></p>
+</div>
+
+<div id="whatIsIP" class="container mt-5">
+    <h2 class="mb-4">What is an IP Address?</h2>
+    <p>An IP address (Internet Protocol address) is a unique string of numbers separated by periods or colons that identifies each computer using the Internet Protocol to communicate over a network.</p>
+        <h2>How Does an IP Address Work?</h3>
+        <p>IP addresses are used to identify devices on a network. They allow devices to communicate with each other by sending and receiving data. There are two types of IP addresses: IPv4 and IPv6. IPv4 addresses are 32-bit numbers, while IPv6 addresses are 128-bit numbers, allowing for a much larger number of unique addresses.</p>
 </div>
 
 <footer class="mt-5 text-center py-3">
