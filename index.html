@@ -6,10 +6,37 @@
     <meta name="description" content="Lookup information for an IP address.">
     <title>ipconfig.tech</title>
     <style>
-        body, pre {
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+        
+.topnav {
+  overflow: hidden;
+  background-color: #282828;
+}
+
+.topnav a {
+  float: left;
+  color: #d3869b;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.topnav a:hover {
+  background-color: #83a598;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+body, pre {
             background-color: #282828; /* Gruvbox dark background */
             color: #ebdbb2; /* Gruvbox light text */
-            font-family: monospace;
+            font-family: Source Code Pro, monospace;
             font-size: 14px;
             line-height: 1.4;
             margin-left: 25px;
@@ -58,9 +85,7 @@
             margin-bottom: 20px;
             padding: 2;
         }
-        .topnav, footer {
-            display: none;
-        }
+        
         /* Highlighting for section headers */
         .section-header {
             color: #fe8019; /* Gruvbox orange */
@@ -84,6 +109,11 @@ margin-top:10px;
     </style>
 </head>
 <body>
+
+    <div class="topnav">
+        <a href="https://github.com/Clevis22/IPLookup">Github</a>
+        <a href="https://www.fortinet.com/resources/cyberglossary/what-is-ip-address">Learn More</a>
+      </div>
 
 <h1 class="section-header">ipconfig.tech:</h1>
 <p class="separator">=====================</p>
