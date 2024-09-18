@@ -76,13 +76,13 @@
             font-weight: bold;
             color: #458588; /* Orange strong text */
         }
-
+/*
       #ipAddress {
           font-size: 3em; /* Increased font size */
           color: #8ec07c; /* Orange IP address text */
           overflow-wrap: anywhere;
       }
-
+*/
       /* Responsive font size adjustments */
       @media screen and (max-width: 600px) {
           #ipAddress {
@@ -90,11 +90,13 @@
           }
       }
 
+      /*
       @media screen and (max-width: 400px) {
           #ipAddress {
               font-size: 1.5em; /* Further adjust font size for even smaller screens */
           }
       }
+      */
 
       @media (max-width: 576px) {
     li strong {
@@ -175,9 +177,9 @@
     <h1 class="text-center mb-4">Your IP Address</h1>
     <div id="result" class="mt-4 text-center">
         <!-- Moved IP Address outside of the list -->
-        <p class="text-center text-lg" id="ipAddress"></p><br><br>
+        <!--<p class="text-center text-lg" id="ipAddress"></p><br><br>-->
         <ul class="list-unstyled">
-            
+            <li><strong>IP Address:</strong> <span id="ipAddress"></span></li>
             <li><strong>Country:</strong> <span id="country"></span></li>
             <li><strong>Country Code:</strong> <span id="countryCode"></span></li>
             <li><strong>Currency:</strong> <span id="currency"></span></li>
@@ -327,6 +329,21 @@
           return [];
       }
   }
+
+  // Function to get x forwarede for
+  function getXforwardedFor(){
+    fetch(window.location)
+  .then(response => {
+    const headers = response.headers;
+    // Iterate over headers
+    for (const header of headers.entries()) {
+      console.log(`${header[0]}: ${header[1]}`);
+    }
+  })
+  .catch(error => console.error('Error:', error));
+  }
+
+  getXforwardedFor();
 
   // Function to check if the user's IP address is in the list
   async function checkUserIPInList(userIP) {
