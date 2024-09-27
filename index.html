@@ -6,34 +6,33 @@
     <meta name="description" content="Lookup information for an IP address.">
     <title>ipconfig.tech</title>
     <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
         
-.topnav {
-  overflow: hidden;
-  background-color: #282828;
-}
+        .topnav {
+            overflow: hidden;
+            background-color: #282828;
+        }
 
-.topnav a {
-  float: left;
-  color: #d3869b;
-  text-align: center;
-  padding: 10px 10px;
-  text-decoration: none;
-  font-size: 14px;
-}
+        .topnav a {
+            float: left;
+            color: #d3869b;
+            text-align: center;
+            padding: 10px 10px;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-.topnav a:hover {
-  background-color: #83a598;
-  color: black;
-}
+        .topnav a:hover {
+            background-color: #83a598;
+            color: black;
+        }
 
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
 
-body, pre {
+        body, pre {
             background-color: #282828; /* Gruvbox dark background */
             color: #ebdbb2; /* Gruvbox light text */
             font-family: Source Code Pro, monospace;
@@ -42,7 +41,8 @@ body, pre {
             margin-left: 25px;
             padding: 5px;
         }
-        h1{
+
+        h1 {
             color: #b8bb26; /* Gruvbox light green */
             font-size: 24px;
             font-weight: normal;
@@ -50,16 +50,17 @@ body, pre {
             padding: 2;
         }
 
-        #result{
-            margin-top:20px;
+        #result {
+            margin-top: 20px;
         }
 
-        h2{
+        h2 {
             color: #b8bb26; /* Gruvbox light green */
             font-size: 14px;
             font-weight: normal;
             margin: 0 0 5px 0;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
@@ -67,45 +68,48 @@ body, pre {
         }
 
         .section-header {
-        font-weight: bold;
-        margin-top:20px;
-        margin-bottom: 0;
-    }
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
 
         li {
             margin-bottom: 5px;
         }
+
         li span {
             color: #83a598; /* Gruvbox blue */
         }
+
         #map {
             display: none;
         }
+
         .container {
             margin-bottom: 20px;
             padding: 2;
         }
-        
+
         /* Highlighting for section headers */
         .section-header {
             color: #fe8019; /* Gruvbox orange */
             font-weight: bold;
-            
         }
+
         /* Style for the equals signs */
         p.separator {
-    color: #d3869b; /* Gruvbox purple for the = characters */
-    font-family: monospace;
-    font-size: 14px;
-    margin: 0; /* Remove margin to stick closer to the heading */
-    padding-bottom: 0px; /* Optional spacing adjustment */
-    line-height: 1; /* Adjust line height for tighter spacing */
-    text-align: left; /* You can use center, right, or left */
-}
+            color: #d3869b; /* Gruvbox purple for the = characters */
+            font-family: monospace;
+            font-size: 14px;
+            margin: 0; /* Remove margin to stick closer to the heading */
+            padding-bottom: 0px; /* Optional spacing adjustment */
+            line-height: 1; /* Adjust line height for tighter spacing */
+            text-align: left; /* You can use center, right, or left */
+        }
 
-.longText {
-margin-top:10px;
-}
+        .longText {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -113,154 +117,179 @@ margin-top:10px;
     <div class="topnav">
         <a href="https://github.com/Clevis22/IPLookup">Github</a>
         <a href="https://www.fortinet.com/resources/cyberglossary/what-is-ip-address">Learn More</a>
-      </div>
+    </div>
 
-<h1 class="section-header">ipconfig.tech:</h1>
-<p class="separator">=====================</p>
+    <h1 class="section-header">ipconfig.tech:</h1>
+    <p class="separator">=====================</p>
 
-<div id="result">
-    <ul>
-        <li>ip_address: <span id="ipAddress"></span></li>
-        <li>country: <span id="country"></span></li>
-        <li>country_code: <span id="countryCode"></span></li>
-        <li>currency: <span id="currency"></span></li>
-        <li>city: <span id="city"></span></li>
-        <li>region: <span id="region"></span></li>
-        <li>region_name: <span id="regionName"></span></li>
-        <li>latitude: <span id="latitude"></span></li>
-        <li>longitude: <span id="longitude"></span></li>
-        <li>timezone: <span id="timezone"></span></li>
-        <li>zip_code: <span id="zip"></span></li>
-        <li>isp: <span id="isp"></span></li>
-        <li>organization: <span id="org"></span></li>
-        <li>as_number: <span id="asNumber"></span></li>
-        <li>as_name: <span id="asName"></span></li>
-        <li>dns_ip: <span id="dnsIp"></span></li>
-        <li>dns_geo: <span id="dnsGeo"></span></li>
-        <li id="ednsInfo">edns_ip: <span id="ednsIp"></span></li>
-        <li id="ednsInfo">edns_geo: <span id="ednsGeo"></span></li>
-        <li>ip_reputation: <span id="sus"></span></li>
-        <li>user_agent: <span id="ua"></span></li>
-    </ul>
-</div>
+    <div id="result">
+        <ul>
+            <li>ip_address: <span id="ipAddress">Loading...</span></li>
+            <li>country: <span id="country">Loading...</span></li>
+            <li>country_code: <span id="countryCode">Loading...</span></li>
+            <li>currency: <span id="currency">Loading...</span></li>
+            <li>city: <span id="city">Loading...</span></li>
+            <li>region: <span id="region">Loading...</span></li>
+            <li>region_name: <span id="regionName">Loading...</span></li>
+            <li>latitude: <span id="latitude">Loading...</span></li>
+            <li>longitude: <span id="longitude">Loading...</span></li>
+            <li>timezone: <span id="timezone">Loading...</span></li>
+            <li>zip_code: <span id="zip">Loading...</span></li>
+            <li>isp: <span id="isp">Loading...</span></li>
+            <li>organization: <span id="org">Loading...</span></li>
+            <li>as_number: <span id="asNumber">Loading...</span></li>
+            <li>as_name: <span id="asName">Loading...</span></li>
+            <li>dns_ip: <span id="dnsIp">Loading...</span></li>
+            <li>dns_geo: <span id="dnsGeo">Loading...</span></li>
+            <li id="ednsInfo">edns_ip: <span id="ednsIp">Loading...</span></li>
+            <li id="ednsInfo">edns_geo: <span id="ednsGeo">Loading...</span></li>
+            <li>ip_reputation: <span id="sus">Loading...</span></li>
+            <li>user_agent: <span id="ua">Loading...</span></li>
+            <li>request_headers: <span id="requestHeaders">Loading...</span></li>
+            <li>response_headers: <span id="responseHeaders">Loading...</span></li>
+            <li>round_trip_time: <span id="rtt">Loading...</span></li>
+            <li>hops: <span id="hops">Loading...</span></li>
+            <li>traceroute_output: <span id="tracerouteOutput">Loading...</span></li>
+            <li>mtu: <span id="mtu">Loading...</span></li>
+            <li>link_type: <span id="linkType">Loading...</span></li>
+        </ul>
+    </div>
 
+    <h2 class="section-header">About:</h2>
+    <p class="separator">======</p>
+    <p class="longText">This service provides insights into the geographic and network details of your current IP address.
+    The site uses IP-API.com and ipapi.co for IP lookup services.
+    IP reputation is provided by https://github.com/stamparm/ipsum</p>
 
-<h2 class="section-header">About:</h2>
-<p class="separator">======</p>
-<p class="longText">This service provides insights into the geographic and network details of your current IP address.
-The site uses IP-API.com and ipapi.co for IP lookup services.
-IP reputation is provided by https://github.com/stamparm/ipsum</p>
+    <h2 class="section-header">What is an IP Address:</h2>
+    <p class="separator">======================</p>
+    <p class="loggText">An IP address (Internet Protocol address) is a unique string of numbers separated by periods or colons
+    that identifies each computer using the Internet Protocol to communicate over a network.</p>
 
-<h2 class="section-header">What is an IP Address:</h2>
-<p class="separator">======================</p>
-<p class="loggText">An IP address (Internet Protocol address) is a unique string of numbers separated by periods or colons
-that identifies each computer using the Internet Protocol to communicate over a network.</p>
+    <h2 class="section-header">How Does an IP Address Work:</h2>
+    <p class="separator">============================</p>
+    <p class="longText">IP addresses are used to identify devices on a network. They allow devices to communicate with each
+    other by sending and receiving data. There are two types of IP addresses: IPv4 and IPv6. IPv4 addresses
+    are 32-bit numbers, while IPv6 addresses are 128-bit numbers, allowing for a much larger number of
+    unique addresses.</p>
 
-<h2 class="section-header">How Does an IP Address Work:</h2>
-<p class="separator">============================</p>
-<p class="longText">IP addresses are used to identify devices on a network. They allow devices to communicate with each
-other by sending and receiving data. There are two types of IP addresses: IPv4 and IPv6. IPv4 addresses
-are 32-bit numbers, while IPv6 addresses are 128-bit numbers, allowing for a much larger number of
-unique addresses.</p>
+    <script>
+        // JavaScript code to fetch and display geolocation information
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    // Update the HTML elements with the data received from the API
+                    document.getElementById('ipAddress').textContent = data.ip;
+                    document.getElementById('country').textContent = data.country_name;
+                    document.getElementById('countryCode').textContent = data.country;
+                    document.getElementById('currency').textContent = data.currency;
+                    document.getElementById('city').textContent = data.city;
+                    document.getElementById('region').textContent = data.region;
+                    document.getElementById('regionName').textContent = data.region_code;
+                    document.getElementById('latitude').textContent = data.latitude;
+                    document.getElementById('longitude').textContent = data.longitude;
+                    document.getElementById('timezone').textContent = data.timezone;
+                    document.getElementById('zip').textContent = data.postal;
+                    document.getElementById('isp').textContent = data.org;
+                    document.getElementById('org').textContent = data.org;
+                    document.getElementById('asNumber').textContent = data.asn;
+                    document.getElementById('asName').textContent = data.org;
+                    document.getElementById('ua').textContent = navigator.userAgent;
 
-
-<script>  
-// JavaScript code to fetch and display geolocation information
-  document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://ipapi.co/json/')
-        .then(response => response.json())
-        .then(data => {
-            // Update the HTML elements with the data received from the API
-            document.getElementById('ipAddress').textContent = data.ip;
-            document.getElementById('country').textContent = data.country_name;
-            document.getElementById('countryCode').textContent = data.country;
-            document.getElementById('currency').textContent = data.currency;
-            document.getElementById('city').textContent = data.city;
-            document.getElementById('region').textContent = data.region;
-            document.getElementById('regionName').textContent = data.region_code;
-            document.getElementById('latitude').textContent = data.latitude;
-            document.getElementById('longitude').textContent = data.longitude;
-            document.getElementById('timezone').textContent = data.timezone;
-            document.getElementById('zip').textContent = data.postal;
-            document.getElementById('isp').textContent = data.org;
-            document.getElementById('org').textContent = data.org;
-            document.getElementById('asNumber').textContent = data.asn;
-            document.getElementById('asName').textContent = data.org;
-            document.getElementById('ua').textContent = navigator.userAgent;
-
-            // Remove map-related code as it's not being used
-            // Check if the user's IP address is in the list
-            checkUserIPInList(data.ip);
-        })
-        .catch(error => {
-            console.error(error);
-            document.getElementById('result').innerHTML = "Error occurred while fetching data.";
+                    // Remove map-related code as it's not being used
+                    // Check if the user's IP address is in the list
+                    checkUserIPInList(data.ip);
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('result').innerHTML = "Error occurred while fetching data.";
+                });
         });
-});
 
-// Remove the myFunction as it's not being used
+        // Remove the myFunction as it's not being used
 
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://edns.ip-api.com/json')
-        .then(response => response.json())
-        .then(data => {
-            if (data.hasOwnProperty('dns')) {
-                document.getElementById('dnsIp').textContent = data.dns.ip;
-                document.getElementById('dnsGeo').textContent = data.dns.geo;
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('https://edns.ip-api.com/json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.hasOwnProperty('dns')) {
+                        document.getElementById('dnsIp').textContent = data.dns.ip;
+                        document.getElementById('dnsGeo').textContent = data.dns.geo;
+                    } else {
+                        document.getElementById('dnsIp').textContent = "N/A";
+                        document.getElementById('dnsGeo').textContent = "N/A";
+                    }
+
+                    if (data.hasOwnProperty('edns')) {
+                        document.getElementById('ednsIp').textContent = data.edns.ip;
+                        document.getElementById('ednsGeo').textContent = data.edns.geo;
+                        document.getElementById('ednsInfo').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    const ednsInfoElements = document.querySelectorAll('#ednsInfo');
+                    ednsInfoElements.forEach(el => {
+                        el.textContent = "Error occurred while fetching EDNS data.";
+                    });
+                });
+        });
+
+        async function fetchIPList() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt');
+                const text = await response.text();
+                const ipList = text.split(/\s+/).filter(str => /^\d+\.\d+\.\d+\.\d+$/.test(str));
+                return ipList;
+            } catch (error) {
+                console.error('Error fetching IP list:', error);
+                return [];
+            }
+        }
+
+        function getXforwardedFor() {
+            fetch(window.location)
+                .then(response => {
+                    const headers = response.headers;
+                    for (const header of headers.entries()) {
+                        console.log(`${header[0]}: ${header[1]}`);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        getXforwardedFor();
+
+        async function checkUserIPInList(userIP) {
+            const ipList = await fetchIPList();
+
+            if (ipList.includes(userIP)) {
+                document.getElementById("sus").textContent = "Suspicious";
             } else {
-                document.getElementById('dnsIp').textContent = "N/A";
-                document.getElementById('dnsGeo').textContent = "N/A";
+                document.getElementById("sus").textContent = "Safe";
             }
+        }
 
-            if (data.hasOwnProperty('edns')) {
-                document.getElementById('ednsIp').textContent = data.edns.ip;
-                document.getElementById('ednsGeo').textContent = data.edns.geo;
-                document.getElementById('ednsInfo').style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            const ednsInfoElements = document.querySelectorAll('#ednsInfo');
-            ednsInfoElements.forEach(el => {
-                el.textContent = "Error occurred while fetching EDNS data.";
-            });
+        // Fetch and display client information from Flask server
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://204.48.23.254:5000/client-info')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ipAddress').textContent = data.ip;
+                    document.getElementById('requestHeaders').textContent = JSON.stringify(data.request_headers, null, 2);
+                    document.getElementById('responseHeaders').textContent = JSON.stringify(data.response_headers, null, 2);
+                    document.getElementById('rtt').textContent = data.round_trip_time;
+                    document.getElementById('hops').textContent = data.hops;
+                    document.getElementById('tracerouteOutput').textContent = data.traceroute_output;
+                    document.getElementById('mtu').textContent = data.mtu;
+                    document.getElementById('linkType').textContent = data.link_type;
+                })
+                .catch(error => {
+                    console.error('Error fetching client info:', error);
+                    document.getElementById('result').innerHTML = "Error occurred while fetching client info.";
+                });
         });
-});
-
-async function fetchIPList() {
-    try {
-        const response = await fetch('https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt');
-        const text = await response.text();
-        const ipList = text.split(/\s+/).filter(str => /^\d+\.\d+\.\d+\.\d+$/.test(str));
-        return ipList;
-    } catch (error) {
-        console.error('Error fetching IP list:', error);
-        return [];
-    }
-}
-
-function getXforwardedFor() {
-    fetch(window.location)
-        .then(response => {
-            const headers = response.headers;
-            for (const header of headers.entries()) {
-                console.log(`${header[0]}: ${header[1]}`);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-getXforwardedFor();
-
-async function checkUserIPInList(userIP) {
-    const ipList = await fetchIPList();
-
-    if (ipList.includes(userIP)) {
-        document.getElementById("sus").textContent = "Suspicious";
-    } else {
-        document.getElementById("sus").textContent = "Safe";
-    }
-}
-  </script>
+    </script>
 </body>
 </html>
