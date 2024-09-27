@@ -144,7 +144,6 @@
             <li id="ednsInfo">edns_ip: <span id="ednsIp">Loading...</span></li>
             <li id="ednsInfo">edns_geo: <span id="ednsGeo">Loading...</span></li>
             <li>ip_reputation: <span id="sus">Loading...</span></li>
-            <li>user_agent: <span id="ua">Loading...</span></li>
             <li>request_headers: <span id="requestHeaders">Loading...</span></li>
             <li>response_headers: <span id="responseHeaders">Loading...</span></li>
             <li>round_trip_time: <span id="rtt">Loading...</span></li>
@@ -195,7 +194,7 @@
                     document.getElementById('org').textContent = data.org;
                     document.getElementById('asNumber').textContent = data.asn;
                     document.getElementById('asName').textContent = data.org;
-                    document.getElementById('ua').textContent = navigator.userAgent;
+                    
 
                     // Remove map-related code as it's not being used
                     // Check if the user's IP address is in the list
