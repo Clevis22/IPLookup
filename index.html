@@ -273,7 +273,7 @@
 
         // Fetch and display client information from Flask server
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('http://204.48.23.254:5000/client-info')
+            fetch('https://backend.ipconfig.tech/client-info')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('ipAddress').textContent = data.ip;
